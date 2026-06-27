@@ -10,18 +10,22 @@ class Restaurante:
     def __str__(self):
         return f'{self._nome}' | {self.categoria}
 
-    def listar_restaurantes():
+    @classmethod 
+
+    def listar_restaurantes(cls):
         print(f'{'Nome do restaurante'.ljust(25)} | {'Categoria'.ljust(25)} | {'Status'}')
-        for restaurante in Restaurante.restaurantes:
+        for restaurante in cls.restaurantes:
             print(f'{restaurante._nome.ljust(25)} | {restaurante._categoria.ljust(25)} | {restaurante.ativo}' )
 
     @property
     def ativo(self):
         return 'verdadeiro' if self._ativo else 'false'
 
-restaurante_praca = Restaurante('Praça', 'Italiana')
-restaurante_pizza = Restaurante('Pizza', 'Italiana')
+    def alternar_estado(self):
+        self._ativo = not self._ativo
 
-restaurantes = [restaurante_praca, restaurante_pizza]
+restaurante_praca = Restaurante('Praça', 'Italiana')
+restaurante_praca.alternar_estado()
+restaurante_pizza = Restaurante('Pizza', 'Italiana')
 
 Restaurante.listar_restaurantes()
